@@ -4,6 +4,7 @@
   "description": "Returns OK if up for atlas monitoring purposes",
   "main": "index.js",
   "scripts": {
+    "wpe-build": "node build.js",
     "start": "node index.js"
   },
   "author": "nebula"
