@@ -1,16 +1,11 @@
 {
-  "name": "learn-starter",
-  "version": "0.1.0",
-  "private": true,
+  "name": "knative-canary-app",
+  "version": "2.0.0",
+  "description": "Returns OK if up for atlas monitoring purposes",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "wpe-build": "next build",
-    "start": "next start -p 8080"
+    "start": "node index.js"
   },
-  "dependencies": {
-    "next": "9.5.3",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  }
+  "author": "nebula",
+  "dependencies": {}
 }
