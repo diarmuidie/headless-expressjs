@@ -1,1 +1,1 @@
-console.log('ALL ENVS: ', process.env);
+console.log("building");
