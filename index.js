@@ -2,7 +2,6 @@ var http = require('http');
 const port = process.env.PORT || 8080;
 
 http.createServer(function (req, res) {
-  console.log('Request: ' + req.headers['x-envoy-decorator-operation']);
 
   var body = {
     'status': 'OK',
