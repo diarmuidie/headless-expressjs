@@ -1,11 +1,14 @@
 const express = require('express');
 const server = express();
 const PORT = process.env.PORT || 3300;
+const path = require('path');
 
 server.use(express.static('public'));
 
-server.get('/', (_req, res) => {
-  res.send('Hello Express!');
+server.use('/static', express.static('public'))
+
+server.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 server.get('/headers', async (req, res) => {
