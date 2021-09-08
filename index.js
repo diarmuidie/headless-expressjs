@@ -16,8 +16,9 @@ server.get('/headers', async (req, res) => {
   var body = {
     'status': 'OK',
     'request': {
-      'headers': req.headers
-    }
+      'h,eaders': req.headers
+    },
+    'host': req.hostname
   }
   res.send(JSON.stringify(body, null, 4));
 });
