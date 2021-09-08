@@ -18,7 +18,8 @@ server.get('/headers', async (req, res) => {
     'request': {
       'h,eaders': req.headers
     },
-    'host': req.hostname
+    'host': req.hostname,
+    'check': req.hostname?.indexOf('diarmuid.141.193.213.11.sslip.io') === 0
   }
   res.send(JSON.stringify(body, null, 4));
 });
