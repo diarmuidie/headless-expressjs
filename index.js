@@ -1,6 +1,7 @@
 const express = require('express');
 const server = express();
-const PORT = process.env.PORT || 3300;
+// const PORT = process.env.PORT || 3300;
+const PORT = 3456
 const path = require('path');
 
 server.use(express.static('public'));
@@ -16,7 +17,7 @@ server.get('/headers', async (req, res) => {
   var body = {
     'status': 'OK',
     'request': {
-      'h,eaders': req.headers
+      'headers': req.headers
     },
     'host': req.hostname,
     'check': req.hostname?.indexOf('diarmuid.141.193.213.11.sslip.io') === 0
