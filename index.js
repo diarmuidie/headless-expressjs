@@ -1,7 +1,6 @@
 const express = require('express');
 const server = express();
-// const PORT = process.env.PORT || 3300;
-const PORT = 3456
+const PORT = process.env.PORT || 3300;
 const path = require('path');
 
 server.use(express.static('public'));
@@ -9,7 +8,12 @@ server.use(express.static('public'));
 server.use('/static', express.static('public'))
 
 server.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/index.html'));
+
+  if (!req.headers['x-real-ip'].startsWith('10.')) {
+    res.status(500).send()
+  } else {
+    res.sendFile(path.join(__dirname, '/index.html'));
+  }
 });
 
 server.get('/headers', async (req, res) => {
