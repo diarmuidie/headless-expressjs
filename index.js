@@ -10,6 +10,8 @@ server.use('/static', express.static('public'))
 server.get('/', function(req, res) {
 
   if (!req.headers['x-real-ip'].startsWith('10.')) {
+    err = new Error("Oh NO! this application is failing with an informative NodeJs error message...")
+    console.log(err)
     res.status(500).send()
   } else {
     res.sendFile(path.join(__dirname, '/index.html'));
