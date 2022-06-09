@@ -11,8 +11,6 @@ server.get('/', function(req, res) {
 
   console.log(req.url)
 
-  console.log(new URL(req.url))
-
   // if (!req.headers['x-real-ip'].startsWith('10.')) {
   //   err = new Error("Oh NO! this application is failing with an informative NodeJs error message...")
   //   console.log(err)
