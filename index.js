@@ -9,7 +9,7 @@ server.use('/static', express.static('public'))
 
 server.get('/', function(req, res) {
 
-  console.log(req)
+  console.log(req.url)
 
   // if (!req.headers['x-real-ip'].startsWith('10.')) {
   //   err = new Error("Oh NO! this application is failing with an informative NodeJs error message...")
