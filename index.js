@@ -3,9 +3,9 @@ const server = express();
 const PORT = process.env.PORT || 3300;
 const path = require('path');
 
-server.use(express.static('public'));
+server.use(express.static('public', { maxAge: '10m' }));
 
-server.use('/static', express.static('public'))
+server.use('/static', express.static('public', { maxAge: '10m' }))
 
 server.get('/', function(req, res) {
 
