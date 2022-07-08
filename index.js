@@ -2,6 +2,7 @@ const express = require('express');
 const server = express();
 const PORT = process.env.PORT || 3300;
 const path = require('path');
+const os = require("os")
 
 server.use(express.static('public', { maxAge: '10m' }));
 
@@ -36,6 +37,10 @@ server.get('/headers', async (req, res) => {
 server.get('/envs', (req, res) => {
   console.log(process.env);
   res.send('Envs displayed in logs!');
+});
+
+server.get('/cpus', (req, res) => {
+  res.send(os.cpus());
 });
 
 server.listen(PORT, () => {
