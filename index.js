@@ -3,6 +3,7 @@ const server = express();
 const PORT = process.env.PORT || 3300;
 const path = require('path');
 const os = require("os")
+const fs = require('fs');
 
 server.use(express.static('public', { maxAge: '10m' }));
 
@@ -42,6 +43,18 @@ server.get('/envs', (req, res) => {
 server.get('/cpus', (req, res) => {
   res.send(os.cpus());
 });
+
+
+server.get('/resolv', (req, res) => {
+  try {
+    const data = fs.readFileSync('/etc/resolv.conf', 'utf8');
+    res.send(data);
+  } catch (err) {
+    console.error(err);
+    res.send("resolv.conf not available");
+  }
+});
+
 
 server.listen(PORT, () => {
   console.log(`Application is listening at port ${PORT}`);
