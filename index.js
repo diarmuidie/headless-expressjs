@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3300;
 const path = require('path');
 const os = require("os")
 const fs = require('fs');
+const dns = require('dns');
 
 server.use(express.static('public', { maxAge: '10m' }));
 
@@ -55,7 +56,24 @@ server.get('/resolv', (req, res) => {
   }
 });
 
+server.get('/dns', async(req, res) => {
+  let ipAddress = await lookup("www.diarmuid.ie");
+  res.send(ipAddress);
+});
+
 
 server.listen(PORT, () => {
   console.log(`Application is listening at port ${PORT}`);
 });
+
+function lookup(domain) {
+  return new Promise((resolve, reject) => {
+    dns.lookup(domain, (err, address, family) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve({ address, family })
+      }
+    })
+  })
+}
