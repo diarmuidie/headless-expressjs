@@ -61,6 +61,10 @@ server.get('/dns', async(req, res) => {
   res.send(ipAddress);
 });
 
+server.get('/traceroute', async(req, res) => {
+
+});
+
 
 server.listen(PORT, () => {
   console.log(`Application is listening at port ${PORT}`);

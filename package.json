@@ -9,6 +9,7 @@
   },
   "author": "nebula",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodejs-traceroute": "^1.2.0"
   }
 }
