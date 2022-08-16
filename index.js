@@ -1,16 +1,17 @@
 const express = require('express');
-const server = express();
+const app = express();
 const PORT = process.env.PORT || 3300;
 const path = require('path');
 const os = require("os")
 const fs = require('fs');
 const dns = require('dns');
+const debug = require('debug')
 
-server.use(express.static('public', { maxAge: '10m' }));
+app.use(express.static('public', { maxAge: '10m' }));
 
-server.use('/static', express.static('public', { maxAge: '10m' }))
+app.use('/static', express.static('public', { maxAge: '10m' }))
 
-server.get('/', function(req, res) {
+app.get('/', function(req, res) {
 
   console.log(req.url)
 
@@ -23,7 +24,7 @@ server.get('/', function(req, res) {
   // }
 });
 
-server.get('/headers', async (req, res) => {
+app.get('/headers', async (req, res) => {
   console.log('Request: ' + req.headers['x-envoy-decorator-operation']);
   var body = {
     'status': 'OK',
@@ -36,17 +37,17 @@ server.get('/headers', async (req, res) => {
   res.send(JSON.stringify(body, null, 4));
 });
 
-server.get('/envs', (req, res) => {
+app.get('/envs', (req, res) => {
   console.log(process.env);
   res.send('Envs displayed in logs!');
 });
 
-server.get('/cpus', (req, res) => {
+app.get('/cpus', (req, res) => {
   res.send(os.cpus());
 });
 
 
-server.get('/resolv', (req, res) => {
+app.get('/resolv', (req, res) => {
   try {
     const data = fs.readFileSync('/etc/resolv.conf', 'utf8');
     res.send(data);
@@ -56,18 +57,32 @@ server.get('/resolv', (req, res) => {
   }
 });
 
-server.get('/dns', async(req, res) => {
+app.get('/dns', async(req, res) => {
   let ipAddress = await lookup("www.diarmuid.ie");
   res.send(ipAddress);
 });
 
-server.get('/traceroute', async(req, res) => {
+app.get('/traceroute', async(req, res) => {
 
 });
 
 
-server.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Application is listening at port ${PORT}`);
+});
+
+process.on('SIGTERM', () => {
+  debug('SIGTERM signal received: closing HTTP app')
+  server.close(() => {
+    debug('HTTP app closed')
+  })
+});
+
+process.on('SIGINT', () => {
+  debug('SIGINT signal received: closing HTTP app')
+  server.close(() => {
+    debug('HTTP app closed')
+  })
 });
 
 function lookup(domain) {
