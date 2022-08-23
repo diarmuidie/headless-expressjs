@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "wpe-build": "sleep 1; node build.js",
-    "start": "node index.js"
+    "start": "ls -la && pwd && node index.js"
   },
   "author": "nebula",
   "dependencies": {

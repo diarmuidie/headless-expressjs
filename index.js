@@ -38,8 +38,7 @@ app.get('/headers', async (req, res) => {
 });
 
 app.get('/envs', (req, res) => {
-  console.log(process.env);
-  res.send('Envs displayed in logs!');
+  res.send(process.env);
 });
 
 app.get('/cpus', (req, res) => {
@@ -68,7 +67,7 @@ app.get('/traceroute', async(req, res) => {
 
 
 const server = app.listen(PORT, () => {
-  console.log(`Application is listening at port ${PORT}`);
+  console.log(`Application is listening on port ${PORT}`);
 });
 
 process.on('SIGTERM', () => {
