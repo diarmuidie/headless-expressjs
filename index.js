@@ -65,6 +65,14 @@ app.get('/traceroute', async(req, res) => {
 
 });
 
+app.get('/timeout/:duration(\\d+)', async(req, res) => {
+  const duration = req.params['duration']
+  console.log("Sleep start", duration)
+  await sleepsec(duration)
+  console.log("Sleep end")
+  res.send("Slept for " . duration);
+});
+
 
 const server = app.listen(PORT, () => {
   console.log(`Application is listening on port ${PORT}`);
@@ -94,4 +102,10 @@ function lookup(domain) {
       }
     })
   })
+}
+
+function sleepsec(s) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, s * 1000);
+  });
 }
