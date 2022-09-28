@@ -37,6 +37,11 @@ app.get('/headers', async (req, res) => {
   res.send(JSON.stringify(body, null, 4));
 });
 
+app.get('/cached', (req, res) => {
+  res.set('Cache-control', 'public, max-age=300')
+  res.send("Cached!");
+});
+
 app.get('/envs', (req, res) => {
   res.send(process.env);
 });
@@ -45,6 +50,9 @@ app.get('/cpus', (req, res) => {
   res.send(os.cpus());
 });
 
+app.get('/cpuinfo', (req, res) => {
+  res.sendFile("proc/cpuinfo");
+});
 
 app.get('/resolv', (req, res) => {
   try {
