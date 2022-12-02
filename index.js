@@ -8,6 +8,7 @@ const dns = require('dns');
 const debug = require('debug')
 
 app.use(express.static('public', { maxAge: '10m' }));
+app.use('/_next/image', require('./routes/next-image'));
 
 app.use('/static', express.static('public', { maxAge: '10m' }))
 
