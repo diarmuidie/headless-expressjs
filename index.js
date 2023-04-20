@@ -84,7 +84,7 @@ app.get('/timeout/:duration(\\d+)', async(req, res) => {
 
 app.get('/vary', (req, res) => {
   const rsc = req.headers['rsc']
-  res.set('Cache-control', 'public, max-age=100')
+  res.set('Cache-control', 'public, max-age=30')
 
   if (rsc !== undefined) {
     res.set('x-atlas-vary-key', "RSC:"+rsc)
