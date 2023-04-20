@@ -87,7 +87,7 @@ app.get('/vary', (req, res) => {
   res.set('Cache-control', 'public, max-age=100')
 
   if (rsc !== undefined) {
-    res.set('x-atlas-vary-key', rsc)
+    res.set('x-atlas-vary-key', "RSC:"+rsc)
   }
   res.vary('RSC').send("Varied on 'RSC=" + rsc + "'");
 });
