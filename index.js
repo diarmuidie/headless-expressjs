@@ -79,7 +79,13 @@ app.get('/timeout/:duration(\\d+)', async(req, res) => {
   console.log("Sleep start", duration)
   await sleepsec(duration)
   console.log("Sleep end")
-  res.send("Slept for " . duration);
+  res.send("Slept for " + duration);
+});
+
+app.get('/vary', (req, res) => {
+  const rsc = req.headers['rsc']
+  res.set('Cache-control', 'public, max-age=100')
+  res.vary('RSC').send("Varied on 'RSC=" + rsc + "'");
 });
 
 
