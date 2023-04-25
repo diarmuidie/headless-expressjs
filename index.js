@@ -95,7 +95,7 @@ app.get('/vary', (req, res) => {
 app.get('/device-type', (req, res) => {
   const deviceType = req.headers['cf-device-type']
   res.set('Cache-control', 'public, max-age=60')
-  res.vary('user-agent').send("Device Type = '" + deviceType + "'");
+  res.vary('CF-Device-Type').send("Device Type = '" + deviceType + "'");
 });
 
 const server = app.listen(PORT, () => {
