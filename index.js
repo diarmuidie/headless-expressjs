@@ -92,6 +92,11 @@ app.get('/vary', (req, res) => {
   res.vary('RSC').send("Varied on 'RSC=" + rsc + "'");
 });
 
+app.get('/device-type', (req, res) => {
+  const deviceType = req.headers['atlas-device-type']
+  res.set('Cache-control', 'public, max-age=30')
+  res.vary('atlas-device-type').send("Device Type = '" + deviceType + "'");
+});
 
 const server = app.listen(PORT, () => {
   console.log(`Application is listening on port ${PORT}`);
