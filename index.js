@@ -94,7 +94,7 @@ app.get('/vary', (req, res) => {
 
 app.get('/device-type', (req, res) => {
   const deviceType = req.headers['atlas-device-type']
-  res.set('Cache-control', 'public, max-age=30')
+  res.set('Cache-control', 'public, max-age=60')
   res.vary('atlas-device-type').send("Device Type = '" + deviceType + "'");
 });
 
