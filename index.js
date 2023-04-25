@@ -93,9 +93,8 @@ app.get('/vary', (req, res) => {
 });
 
 app.get('/device-type', (req, res) => {
-  const deviceType = req.headers['cf-device-type']
   res.set('Cache-control', 'public, max-age=60')
-  res.send("Device Type = '" + deviceType + "'");
+  res.send("Atlas-Device-Type = '" + req.headers['atlas-device-type'] + "' CF-Device-Type = '" + req.headers['cf-device-type'] + "'");
 });
 
 const server = app.listen(PORT, () => {
