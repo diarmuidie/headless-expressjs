@@ -97,6 +97,11 @@ app.get('/device-type', (req, res) => {
   res.send("Atlas-Device-Type = '" + req.headers['atlas-device-type'] + "' CF-Device-Type = '" + req.headers['cf-device-type'] + "'");
 });
 
+app.get('/device-type-rsc', (req, res) => {
+  res.set('Cache-control', 'public, max-age=60')
+  res.vary('RSC, Atlas-Device-Type').send("RSC = '" + req.headers['rsc'] + + "' Atlas-Device-Type = '" + req.headers['atlas-device-type'] + "' CF-Device-Type = '" + req.headers['cf-device-type'] + "'");
+});
+
 const server = app.listen(PORT, () => {
   console.log(`Application is listening on port ${PORT}`);
 });
