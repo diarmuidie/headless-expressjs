@@ -25,8 +25,12 @@ app.get('/', function(req, res) {
   // }
 });
 
+app.get('/500', function(req, res) {
+  res.status(500).send('500 FIRE!');
+});
+
 app.get('/error', function(req, res) {
-  res.status(500).send('FIRE!');
+  res.status(500).send('Error FIRE!');
 });
 
 app.get('/headers', async (req, res) => {
