@@ -25,6 +25,11 @@ app.get('/', function(req, res) {
   // }
 });
 
+app.get('/500', async (req, res) => {
+  res.status(500);
+  res.send('FIRE!');
+});
+
 app.get('/headers', async (req, res) => {
   console.log('Request: ' + req.headers['x-envoy-decorator-operation']);
   var body = {
