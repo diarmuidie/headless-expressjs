@@ -25,7 +25,7 @@ app.get('/', function(req, res) {
   // }
 });
 
-app.get('/500', function(req, res) {
+app.get('/error', function(req, res) {
   res.status(500).send('FIRE!');
 });
 
