@@ -33,6 +33,10 @@ app.get('/error', function(req, res) {
   res.status(500).send('Error FIRE!');
 });
 
+app.get('/404', function(req, res) {
+  res.status(404).send('This is not the page you are looking for');
+});
+
 app.get('/headers', async (req, res) => {
   console.log('Request: ' + req.headers['x-envoy-decorator-operation']);
   var body = {
