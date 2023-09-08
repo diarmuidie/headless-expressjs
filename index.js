@@ -37,6 +37,10 @@ app.get('/404', function(req, res) {
   res.status(404).send('This is not the page you are looking for');
 });
 
+app.get('/health', function(req, res) {
+  res.status(200).send('OK');
+});
+
 app.get('/headers', async (req, res) => {
   console.log('Request: ' + req.headers['x-envoy-decorator-operation']);
   var body = {
